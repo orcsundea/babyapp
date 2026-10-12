@@ -1,2 +1,0 @@
-OCR: Tesseract.js, tesseract.js-core, and tesseract-ocr/tessdata_best (Apache-2.0).
-Language data revision: e12c65a915945e4c28e237a9b52bc4a8f39a0cec
