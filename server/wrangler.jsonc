@@ -4,10 +4,10 @@
   "main": "worker.js",
   "compatibility_date": "2025-04-01",
   "workers_dev": true,
+  "keep_vars": true,
   "secrets": {"required": ["GEMINI_API_KEY", "OCR_ACCESS_TOKEN"]},
   "vars": {
     "ALLOWED_ORIGIN": "https://orcsundea.github.io",
-    "GEMINI_MODEL": "gemini-2.5-flash",
     "MONTHLY_LIMIT": "100",
     "DAILY_LIMIT": "10"
   },

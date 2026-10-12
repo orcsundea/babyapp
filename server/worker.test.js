@@ -41,3 +41,16 @@ test('durable quota counts concurrent attempts and survives a new instance',asyn
  const usage=values.get('usage');values.set('usage',{...usage,date:'2000-01-01'});
  assert.equal((await quota.fetch(req())).status,200);assert.equal((await quota.fetch(req())).status,429);
 });
+
+test('model discovery authenticates, paginates and never uploads photos or returns the API key',async()=>{
+ const e=env();let calls=0,reservations=[];e.OCR_QUOTA.get=()=>({fetch:async url=>{reservations.push(url);return Response.json({allowed:true});}});
+ const response=await handleRequest(new Request('https://test.workers.dev/models',{method:'POST',headers:{Origin:origin,Authorization:`Bearer ${token}`}}),e,async(url,init)=>{
+  calls++;assert.equal(init.headers['x-goog-api-key'],e.GEMINI_API_KEY);assert.equal(init.body,undefined);
+  return Response.json(calls===1?{models:[{name:'models/gemini-example-flash',supportedGenerationMethods:['generateContent']},{name:'models/gemini-embedding',supportedGenerationMethods:['embedContent']}],nextPageToken:'next'}:{models:[{name:'models/gemini-example-pro',supportedGenerationMethods:['generateContent']}]});
+ });
+ assert.equal(response.status,200);const result=await response.json();assert.deepEqual(result.models,['gemini-example-flash','gemini-example-pro']);assert.equal(result.currentAvailable,false);assert.equal(result.complete,true);assert.equal(calls,2);assert.deepEqual(reservations,['https://quota/models-check']);assert(!JSON.stringify(result).includes(e.GEMINI_API_KEY));
+});
+test('Google model error gives diagnostic detail with credentials redacted',async()=>{
+ const e=env();const response=await handleRequest(request(),e,async()=>Response.json({error:{message:`Model not found. ${e.GEMINI_API_KEY} ${e.OCR_ACCESS_TOKEN}`}},{status:404}));
+ const result=await response.json();assert.equal(result.error,'gemini_model_error');assert.equal(result.providerStatus,404);assert.match(result.detail,/Model not found/);assert(!JSON.stringify(result).includes(e.GEMINI_API_KEY));assert(!JSON.stringify(result).includes(e.OCR_ACCESS_TOKEN));
+});
