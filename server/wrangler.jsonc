@@ -1,0 +1,19 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "bodre-gemini",
+  "main": "worker.js",
+  "compatibility_date": "2025-04-01",
+  "workers_dev": true,
+  "secrets": {"required": ["GEMINI_API_KEY", "OCR_ACCESS_TOKEN"]},
+  "vars": {
+    "ALLOWED_ORIGIN": "https://orcsundea.github.io",
+    "GEMINI_MODEL": "gemini-2.5-flash",
+    "MONTHLY_LIMIT": "100",
+    "DAILY_LIMIT": "10"
+  },
+  "durable_objects": {
+    "bindings": [{"name": "OCR_QUOTA", "class_name": "OcrQuota"}]
+  },
+  "migrations": [{"tag": "v1", "new_sqlite_classes": ["OcrQuota"]}],
+  "observability": {"enabled": false}
+}

@@ -9,3 +9,5 @@
 .photo-actions{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:10px}
 
 .ocr-option{display:block;margin:20px 0;font-size:15px;line-height:1.7}.ocr-option input{width:22px;height:22px;vertical-align:middle;accent-color:var(--green)}.photo-original{height:330px;display:grid;place-items:center;background:#f5f6f2;border-radius:10px;margin:18px 0;overflow:hidden}.photo-original img{max-width:75%;max-height:260px;object-fit:contain}.photo-preview small{margin-top:10px}.review-row{align-items:flex-start;flex-direction:column}.import-fields{display:flex;flex-wrap:wrap;gap:12px;width:100%}.import-fields label{font-size:14px;flex:1 1 190px}.import-fields input{display:block;width:100%;min-height:50px;padding:10px;border:1px solid #dfe4d6;border-radius:8px;margin-top:6px;font:inherit;min-width:0}.import-fields input[type=number]{max-width:190px}button:disabled{opacity:.55;cursor:wait}
+
+.ocr-original-text{margin-bottom:20px}.ocr-original-text summary{cursor:pointer;font-size:16px;padding:10px 0}.ocr-original-text pre{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;line-height:1.8;background:#f5f6f2;padding:16px;border-radius:8px}

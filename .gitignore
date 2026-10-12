@@ -7,3 +7,10 @@ public/ocr/
 *.apk
 __pycache__/
 *.pyc
+
+.wrangler/
+.dev.vars
+.dev.vars.*
+.env
+.env.*
+!.env.example
