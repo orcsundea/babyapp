@@ -10,7 +10,10 @@
     "prepare:ocr": "node scripts/prepare-ocr.js",
     "postinstall": "npm run prepare:ocr",
     "android:sync": "npm run build && cap sync android",
-    "android:build": "npm run android:sync && python3 scripts/android-tool.py ./android/gradlew -p android assembleRelease --max-workers=4 --no-daemon --console=plain && python3 scripts/sign-apk.py"
+    "android:build": "npm run android:sync && python3 scripts/android-tool.py ./android/gradlew -p android assembleRelease --max-workers=4 --no-daemon --console=plain && python3 scripts/sign-apk.py",
+    "dev:web": "vite --mode web --host 0.0.0.0",
+    "build:web": "vite build --mode web --base=./ && node scripts/secure-web-build.js",
+    "build:pages": "vite build --mode web --base=./ && node scripts/secure-web-build.js"
   },
   "dependencies": {
     "@capacitor/android": "^7.6.9",
