@@ -7,14 +7,16 @@ mkdirSync(out,{recursive:true});
 copyFileSync(new URL('node_modules/tesseract.js/dist/worker.min.js',root),new URL('worker.min.js',out));
 const core=new URL('node_modules/tesseract.js-core/',root);
 for(const file of readdirSync(core))if(file.endsWith('.wasm.js')||file.endsWith('.wasm'))copyFileSync(new URL(file,core),new URL(file,out));
-const revision='87416418657359cb625c412a48b6e1d6d41c29bd';
-const checksums={kor:'6b85e11d9bbf07863b97b3523b1b112844c43e713df8b66418a081fd1060b3b2',eng:'7d4322bd2a7749724879683fc3912cb542f19906c83bcc1a52132556427170b2'};
+const revision='e12c65a915945e4c28e237a9b52bc4a8f39a0cec';
+const languages=new URL('best-v1/',out);
+mkdirSync(languages,{recursive:true});
+const checksums={kor:'f888d4038348a0c3d25151e7f452bda0d74ca275b18cab146798bcbb94084fff',eng:'8280aed0782fe27257a68ea10fe7ef324ca0f8d85bd2fd145d1c2b560bcb66ba'};
 for(const lang of ['kor','eng']){
- const file=new URL(`${lang}.traineddata`,out);
- if(!existsSync(file)){const temp=new URL(`${lang}.download`,out);execFileSync('curl',['--fail','--location','--retry','2','--max-time','120',`https://raw.githubusercontent.com/tesseract-ocr/tessdata_fast/${revision}/${lang}.traineddata`,'-o',temp.pathname],{stdio:'inherit'});renameSync(temp,file);}
+ const file=new URL(`${lang}.traineddata`,languages);
+ if(!existsSync(file)){const temp=new URL(`${lang}.download`,languages);execFileSync('curl',['--fail','--location','--retry','2','--max-time','120',`https://raw.githubusercontent.com/tesseract-ocr/tessdata_best/${revision}/${lang}.traineddata`,'-o',temp.pathname],{stdio:'inherit'});renameSync(temp,file);}
  const actual=createHash('sha256').update(readFileSync(file)).digest('hex');
  if(actual!==checksums[lang])throw new Error(`${lang}: language data checksum mismatch`);
  console.log(`${lang}: checksum verified`);
 }
-writeFileSync(new URL('NOTICE.txt',out),'OCR: Tesseract.js, tesseract.js-core, and tesseract-ocr/tessdata_fast (Apache-2.0).\nLanguage data revision: '+revision+'\n');
+writeFileSync(new URL('NOTICE.txt',out),'OCR: Tesseract.js, tesseract.js-core, and tesseract-ocr/tessdata_best (Apache-2.0).\nLanguage data revision: '+revision+'\n');
 console.log('Local OCR assets prepared.');
