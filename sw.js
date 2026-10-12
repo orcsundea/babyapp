@@ -1,6 +1,6 @@
 const scope=new URL(self.registration.scope);
 const prefix=`bodre-${scope.pathname}-`;
-const CACHE=prefix+'v2';
+const CACHE=prefix+'v3';
 const at=path=>new URL(path,scope).href;
 self.addEventListener('install',event=>{event.waitUntil((async()=>{
  const cache=await caches.open(CACHE);
