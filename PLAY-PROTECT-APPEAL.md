@@ -29,7 +29,7 @@ https://support.google.com/googleplay/android-developer/contact/protectappeals
 
 Subject: Request for review of Google Play Protect block for com.bodre.babyapp
 
-We request a review and clarification of the Google Play Protect block affecting our Android app, Bodre (package com.bodre.babyapp, version 1.0.0, versionCode 1). A user reports that Play Protect repeatedly blocks the app to protect the device. The warning states that the app is potentially harmful and was installed following a phishing attempt.
+We request a review and clarification of the Google Play Protect block affecting our Android app, Bodre (package com.bodre.babyapp, version 1.0.0, versionCode 1). A user reports that Play Protect repeatedly blocks the app to protect the device. The warning states that the app is potentially harmful and was installed following a phishing attempt. Additional Samsung screenshots show a separate unverified-source installation warning and Bodre listed under unsafe apps, with detection dated 2026-10-13 on the user’s device. We do not interpret the unverified-source prompt as proof that the harmful-app verdict can be ignored.
 
 Bodre is an infant activity logging app built with Capacitor 7. Its intended functions are recording feeding, diapers, supplements and sleep, plus on-device OCR of a paper log. Records are stored in the app's local browser storage. The app does not implement account sign-in, banking or payment forms. The release manifest declares INTERNET and an app-specific DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION; it does not declare SMS-reading, accessibility-service, overlay or APK-installation permissions. Its Capacitor configuration contains no external server URL.
 
