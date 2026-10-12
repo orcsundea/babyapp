@@ -13,7 +13,7 @@
    | `OCR_ACCESS_TOKEN` | 직접 정한 무작위 연결 암호. 32자 이상. Gemini 키와 다른 값 |
 
    실제 값은 Git 저장소·채팅·브라우저 소스에 넣지 않습니다. 보드레 앱의 연결 설정에서 **무작위 연결 암호 만들기**를 누르면 암호를 생성·복사할 수 있습니다. 그 값을 Cloudflare Secret에도 똑같이 넣습니다.
-3. **Save and Deploy**로 적용하고 Worker 주소 `https://bodre-gemini.<계정>.workers.dev`를 확인합니다. 제공 모델의 가용성은 Google 계정에서 확인합니다. 기본값은 `gemini-2.5-flash`이며, 지원이 종료되었다면 `GEMINI_MODEL`을 현재 사용 가능한 사진 입력 모델로 명시적으로 변경합니다. 코드가 다른 유료 모델로 자동 전환하지 않습니다.
+3. **Save and Deploy**로 적용하고 Worker 주소 `https://babyapp.<계정>.workers.dev`를 확인합니다. 제공 모델의 가용성은 Google 계정에서 확인합니다. 기본값은 `gemini-2.5-flash`이며, 지원이 종료되었다면 `GEMINI_MODEL`을 현재 사용 가능한 사진 입력 모델로 명시적으로 변경합니다. 코드가 다른 유료 모델로 자동 전환하지 않습니다.
 4. [보드레](https://orcsundea.github.io/babyapp/)의 **아기 정보 · 설정 → 사진 인식 연결**에 Worker 주소와 `OCR_ACCESS_TOKEN`을 입력합니다. Gemini API 키를 입력하는 칸은 없습니다. 보호자·시터의 기기도 같은 서버 주소·연결 암호로 연결합니다.
 5. 실제 손글씨 사진을 골라 인식한 활동·시간·양을 원본과 비교합니다. Google의 실제 응답과 정확도는 서버 계정과 Gemini 키를 등록한 뒤에 검증할 수 있습니다.
 
