@@ -1,0 +1,9 @@
+{
+  "appId": "com.bodre.babyapp",
+  "appName": "보드레",
+  "webDir": "dist",
+  "android": {
+    "backgroundColor": "#f8f9f6",
+    "allowMixedContent": false
+  }
+}

@@ -1,0 +1,9 @@
+node_modules/
+dist/
+*.log
+public/ocr/
+*.jks
+*.keystore
+*.apk
+__pycache__/
+*.pyc
